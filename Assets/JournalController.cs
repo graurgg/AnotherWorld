@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using StarterAssets;
+using UnityEngine.EventSystems;
+using TMPro;
 
 public class JournalController : MonoBehaviour
 {
@@ -18,9 +20,37 @@ public class JournalController : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current != null && Keyboard.current.jKey.wasPressedThisFrame)
+        if (IsPlayerTyping())
         {
-            ToggleJournal();
+            if (Keyboard.current.escapeKey.wasPressedThisFrame)
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+            }
+
+            return;
+        }
+        if (Keyboard.current != null)
+        {
+            // esc while typing in notes section
+            if (IsPlayerTyping())
+            {
+                if (Keyboard.current.escapeKey.wasPressedThisFrame)
+                {
+                    EventSystem.current.SetSelectedGameObject(null);
+                }
+
+                return;
+            }
+
+            if (Keyboard.current.jKey.wasPressedThisFrame)
+            {
+                ToggleJournal();
+            }
+
+            else if (isJournalOpen && Keyboard.current.escapeKey.wasPressedThisFrame)
+            {
+                ToggleJournal();
+            }
         }
     }
 
@@ -63,5 +93,16 @@ public class JournalController : MonoBehaviour
 
             if (playerInput != null) playerInput.enabled = true;
         }
+    }
+
+    private bool IsPlayerTyping()
+    {
+        if (EventSystem.current == null) return false;
+
+        GameObject selectedObj = EventSystem.current.currentSelectedGameObject;
+
+        if (selectedObj == null) return false;
+
+        return selectedObj.GetComponent<TMP_InputField>() != null;
     }
 }

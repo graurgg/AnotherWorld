@@ -1,0 +1,64 @@
+{
+  "turning_points": [
+    {
+      "id": "town_entrance",
+      "description": "Opens the fence preventing access to Saltmere.",
+      "required_keys": []
+    },
+    {
+      "id": "church_district",
+      "description": "Moves the horse-drawn carriage blocking the street to the church district.",
+      "required_keys": []
+    },
+    {
+      "id": "church_side_alley",
+      "description": "Spawns Eris in the church side alley.",
+      "required_keys": []
+    },
+    {
+      "id": "church_entrance",
+      "description": "Grants entry to the main hall of the church.",
+      "required_keys": []
+    },
+    {
+      "id": "felix_market_stall",
+      "description": "Spawns Felix's market stall near the church.",
+      "required_keys": []
+    },
+    {
+      "id": "hilltop_ruins",
+      "description": "Spawns Lenore on the hilltop ruins.",
+      "required_keys": []
+    },
+    {
+      "id": "inn_room",
+      "description": "Allows entrance to the protagonist's inn room.",
+      "required_keys": []
+    },
+    {
+      "id": "dream_sequence",
+      "description": "Triggers the Lenore dream sequence.",
+      "required_keys": []
+    },
+    {
+      "id": "exiting_inn",
+      "description": "Allows the player to exit the inn after the dream.",
+      "required_keys": []
+    },
+    {
+      "id": "runic_cave_discovery",
+      "description": "Player can now navigate to the forest and runic cave.",
+      "required_keys": []
+    },
+    {
+      "id": "eris_solon_confession",
+      "description": "Triggers the orb of truth confession scene with Eris and Solon.",
+      "required_keys": []
+    },
+    {
+      "id": "hilltop_finale",
+      "description": "Spawns Lenore for the final resolution at the hilltop ruins.",
+      "required_keys": []
+    }
+  ]
+}

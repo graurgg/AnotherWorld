@@ -3,76 +3,38 @@ using UnityEngine.InputSystem;
 
 public class NPCInteraction : MonoBehaviour
 {
-    [Header("UI References")]
-    public GameObject dialogueWindow;
-    public GameObject mainHUD;
+    public static NPCInteraction Instance { get; private set; }
 
     [Header("Interaction Settings")]
     public float interactionDistance = 3f;
 
-    private bool isDialogueOpen = false;
+    public NPCAgent HoveredNPC { get; private set; }
 
-    public PlayerInput playerInput;
-
-    void Start()
+    void Awake()
     {
-        // Ensure the dialogue window is hidden when the game starts
-        dialogueWindow.SetActive(false);
+        Instance = this;
     }
 
     void Update()
     {
-        // Only check for interaction if the dialogue isn't already open
-        if (!isDialogueOpen)
-        {
-            CheckForNPC();
-        }
-        if (isDialogueOpen && Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            CloseDialogue();
-        }
+        UpdateHover();
+        if (DialogueController.Instance == null || DialogueController.Instance.IsOpen) return;
+        if (HoveredNPC != null && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
+            DialogueController.Instance.Open(HoveredNPC.npcId);
     }
 
-    void CheckForNPC()
+    void UpdateHover()
     {
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, interactionDistance))
-        {
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0));
+        NPCAgent detected = null;
+        if (Physics.Raycast(ray, out RaycastHit hit, interactionDistance))
             if (hit.collider.CompareTag("NPC"))
-            {
-                if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
-                {
-                    OpenDialogue();
-                }
-            }
-        }
-    }
+                detected = hit.collider.GetComponent<NPCAgent>();
 
-    public void OpenDialogue()
-    {
-        isDialogueOpen = true;
+        if (detected == HoveredNPC) return;
 
-        dialogueWindow.SetActive(true);
-        if (mainHUD != null) mainHUD.SetActive(false);
-
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-
-        if (playerInput != null) playerInput.enabled = false;
-    }
-
-    public void CloseDialogue()
-    {
-        isDialogueOpen = false;
-
-        dialogueWindow.SetActive(false);
-        if (mainHUD != null) mainHUD.SetActive(true);
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-        if (playerInput != null) playerInput.enabled = true;
+        HoveredNPC?.GetComponent<OutlineEffect>()?.Hide();
+        HoveredNPC = detected;
+        HoveredNPC?.GetComponent<OutlineEffect>()?.Show();
     }
 }

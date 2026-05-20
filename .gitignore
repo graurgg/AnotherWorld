@@ -2,6 +2,13 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
+
+# Claude Code AI assistant memory — personal, machine-specific
+.claude/
+
+# Source art files (large, keep locally or in cloud storage)
+*.psd
+*.blend
 .utmp/
 /[Ll]ibrary/
 /[Tt]emp/

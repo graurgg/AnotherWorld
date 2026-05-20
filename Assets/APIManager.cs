@@ -16,6 +16,9 @@ public class APIManager : MonoBehaviour
     [Header("Scrolling")]
     public ScrollRect scrollRect;
 
+    [Header("NPC")]
+    public string npcId;
+
     [Header("API Settings")]
     public string apiKey = "sk-eca0e7c8c873405696e68ef3d8880265"; // TODO: Move this to a secure location in production
     private string apiUrl = "https://api.deepseek.com/chat/completions";
@@ -34,14 +37,11 @@ public class APIManager : MonoBehaviour
     void Start()
     {
         sendButton.onClick.AddListener(OnSendButtonClicked);
-
         inputField.onSubmit.AddListener(delegate { OnSendButtonClicked(); });
 
-        conversationHistory.Add(new Message
-        {
-            role = "system",
-            content = "You are a villager in the medieval town of Saltmere. Keep your answers brief and in character."
-        });
+        string systemPrompt = BuildSystemPrompt();
+        conversationHistory.Add(new Message { role = "system", content = systemPrompt });
+
         inputField.ActivateInputField();
     }
 
@@ -94,17 +94,50 @@ public class APIManager : MonoBehaviour
                 ChatResponse responseData = JsonUtility.FromJson<ChatResponse>(request.downloadHandler.text);
                 if (responseData != null && responseData.choices != null && responseData.choices.Count > 0)
                 {
-                    string aiText = responseData.choices[0].message.content;
+                    string rawText = responseData.choices[0].message.content;
+                    var parsed = LLMResponseParser.Parse(rawText);
 
-                    conversationHistory.Add(new Message { role = "assistant", content = aiText });
+                    if (parsed.hasWarning)
+                        Debug.LogWarning("[APIManager] LLM issued a WARNING tag for NPC: " + npcId);
 
-                    AddMessageToUI("NPC: " + aiText);
+                    foreach (int keyId in parsed.detectedKeys)
+                        GameStateManager.Instance?.CollectKey(keyId);
+
+                    conversationHistory.Add(new Message { role = "assistant", content = parsed.cleanedText });
+                    AddMessageToUI("NPC: " + parsed.cleanedText);
                 }
             }
 
             // Re-enable the send button
             sendButton.interactable = true;
         }
+    }
+
+    public void BeginConversation(string newNpcId)
+    {
+        npcId = newNpcId;
+        conversationHistory.Clear();
+        conversationHistory.Add(new Message { role = "system", content = BuildSystemPrompt() });
+
+        foreach (Transform child in chatHistoryContent)
+            if (!ReferenceEquals(child.gameObject, chatMessagePrefab))
+                Destroy(child.gameObject);
+
+        sendButton.interactable = true;
+        inputField.text = "";
+        inputField.ActivateInputField();
+    }
+
+    string BuildSystemPrompt()
+    {
+        if (!string.IsNullOrWhiteSpace(npcId))
+        {
+            NPCData npc = NPCDataLoader.Load(npcId);
+            if (npc != null)
+                return SystemPromptBuilder.Build(npc);
+            Debug.LogWarning("[APIManager] NPC data not found for id: " + npcId + ". Falling back to generic prompt.");
+        }
+        return "You are a villager in the medieval town of Saltmere. Keep your answers brief and in character.";
     }
 
     void AddMessageToUI(string text)
