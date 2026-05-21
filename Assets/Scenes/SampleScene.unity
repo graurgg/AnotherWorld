@@ -245,6 +245,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 64965321}
   m_CullTransparentMesh: 1
+--- !u!1 &108251024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 108251026}
+  - component: {fileID: 108251025}
+  m_Layer: 0
+  m_Name: GameStateManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &108251025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108251024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7ca4c8ad0f105499d14d4c33f83d8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameStateManager
+--- !u!4 &108251026
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108251024}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &112226080
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,6 +598,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 123965507}
   m_CullTransparentMesh: 1
+--- !u!1 &132671090 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7130201345278169549, guid: d81b53876cca4af49b57fec502975f05, type: 3}
+  m_PrefabInstance: {fileID: 1162323172}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &132671096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132671090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7af30c278fe81b240a1e4622f180c305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OutlineEffect
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 0.015
 --- !u!1001 &207128774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1285,7 +1348,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615982445}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1626,6 +1689,25 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &708432078 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7130201345278169549, guid: d81b53876cca4af49b57fec502975f05, type: 3}
+  m_PrefabInstance: {fileID: 2037896244}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &708432084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708432078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7af30c278fe81b240a1e4622f180c305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OutlineEffect
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 0.015
 --- !u!1001 &710590503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2577,7 +2659,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7130201345278169549, guid: d81b53876cca4af49b57fec502975f05, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 132671096}
   m_SourcePrefab: {fileID: 100100000, guid: d81b53876cca4af49b57fec502975f05, type: 3}
 --- !u!1 &1208966094
 GameObject:
@@ -2951,6 +3036,8 @@ GameObject:
   - component: {fileID: 1259996770}
   - component: {fileID: 1259996769}
   - component: {fileID: 1259996768}
+  - component: {fileID: 1259996772}
+  - component: {fileID: 1259996773}
   m_Layer: 0
   m_Name: NPC_Test
   m_TagString: NPC
@@ -3053,6 +3140,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1259996772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259996767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5afb2a07addc9149af932201b6c0e11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPCAgent
+  npcId: felix
+  displayName: 
+--- !u!114 &1259996773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259996767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7af30c278fe81b240a1e4622f180c305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OutlineEffect
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 0.015
 --- !u!1 &1260852172
 GameObject:
   m_ObjectHideFlags: 0
@@ -3432,15 +3547,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d18d0b93c0f085419c1b5fe77c4e5c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCInteraction
-  dialogueWindow: {fileID: 2134959165}
-  mainHUD: {fileID: 1531807315}
   interactionDistance: 3
-  playerInput: {fileID: 1250919808}
 --- !u!20 &1375029088 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 5126527961139664767, guid: 035bf1ba97d19214580cfe6f5a29fdc3, type: 3}
   m_PrefabInstance: {fileID: 1739825014}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1375029089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375029078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2c6ddbe75302c948ac9c9c4024f2847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueController
+  apiManager: {fileID: 2134959169}
+  dialogueWindow: {fileID: 2134959165}
+  hud: {fileID: 1531807315}
+  playerInput: {fileID: 1250919808}
 --- !u!1 &1379978649
 GameObject:
   m_ObjectHideFlags: 0
@@ -4538,6 +4666,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5126527961139664765, guid: 035bf1ba97d19214580cfe6f5a29fdc3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1375029084}
+    - targetCorrespondingSourceObject: {fileID: 5126527961139664765, guid: 035bf1ba97d19214580cfe6f5a29fdc3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1375029089}
     - targetCorrespondingSourceObject: {fileID: 453084650579209855, guid: 035bf1ba97d19214580cfe6f5a29fdc3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1343915791}
@@ -5393,7 +5524,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7130201345278169549, guid: d81b53876cca4af49b57fec502975f05, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 708432084}
   m_SourcePrefab: {fileID: 100100000, guid: d81b53876cca4af49b57fec502975f05, type: 3}
 --- !u!1 &2043522003
 GameObject:
@@ -5628,6 +5762,7 @@ MonoBehaviour:
   chatHistoryContent: {fileID: 649218954}
   chatMessagePrefab: {fileID: 1559327558058810434, guid: 731c8b3f86e6f7b4983ffcae9e16d170, type: 3}
   scrollRect: {fileID: 112226084}
+  npcId: 
   apiKey: sk-eca0e7c8c873405696e68ef3d8880265
 --- !u!1001 &7949657920827534940
 PrefabInstance:
@@ -5741,9 +5876,10 @@ SceneRoots:
   - {fileID: 1861583962}
   - {fileID: 1698680892}
   - {fileID: 770274297}
-  - {fileID: 615982446}
   - {fileID: 1259996771}
   - {fileID: 614123920}
   - {fileID: 1758483777}
   - {fileID: 1162323172}
   - {fileID: 2037896244}
+  - {fileID: 108251026}
+  - {fileID: 615982446}
