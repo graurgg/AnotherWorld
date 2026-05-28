@@ -20,7 +20,7 @@ public class APIManager : MonoBehaviour
     public string npcId;
 
     [Header("API Settings")]
-    public string apiKey = "sk-eca0e7c8c873405696e68ef3d8880265"; // TODO: Move this to a secure location in production
+    private string apiKey;
     private string apiUrl = "https://api.deepseek.com/chat/completions";
 
     private List<Message> conversationHistory = new List<Message>();
@@ -33,6 +33,15 @@ public class APIManager : MonoBehaviour
     public class ChatResponse { public List<Choice> choices; }
     [System.Serializable]
     public class Choice { public Message message; }
+
+    void Awake()
+    {
+        var secrets = Resources.Load<TextAsset>("ApiSecrets");
+        if (secrets != null)
+            apiKey = secrets.text.Trim();
+        else
+            Debug.LogError("[APIManager] ApiSecrets.txt not found in Resources. Create Assets/Resources/ApiSecrets.txt containing only your API key.");
+    }
 
     void Start()
     {
@@ -95,6 +104,7 @@ public class APIManager : MonoBehaviour
                 if (responseData != null && responseData.choices != null && responseData.choices.Count > 0)
                 {
                     string rawText = responseData.choices[0].message.content;
+                    Debug.Log($"[APIManager] Raw response from '{npcId}':\n{rawText}");
                     var parsed = LLMResponseParser.Parse(rawText);
 
                     if (parsed.hasWarning)
@@ -134,7 +144,11 @@ public class APIManager : MonoBehaviour
         {
             NPCData npc = NPCDataLoader.Load(npcId);
             if (npc != null)
-                return SystemPromptBuilder.Build(npc);
+            {
+                string prompt = SystemPromptBuilder.Build(npc);
+                Debug.Log($"[APIManager] System prompt for '{npcId}':\n{prompt}");
+                return prompt;
+            }
             Debug.LogWarning("[APIManager] NPC data not found for id: " + npcId + ". Falling back to generic prompt.");
         }
         return "You are a villager in the medieval town of Saltmere. Keep your answers brief and in character.";

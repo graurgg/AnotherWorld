@@ -46,6 +46,13 @@ public class GameStateManager : MonoBehaviour
         EvaluateTurningPoints();
     }
 
+    public void TriggerPoint(string pointId)
+    {
+        if (!_triggeredPoints.Add(pointId)) return;
+        Debug.Log("[GameState] Turning point triggered: " + pointId);
+        OnTurningPointTriggered?.Invoke(pointId);
+    }
+
     public bool HasKey(int keyId)          => _collectedKeys.Contains(keyId);
     public bool HasTurningPoint(string id) => _triggeredPoints.Contains(id);
 

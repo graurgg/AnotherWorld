@@ -6,6 +6,10 @@
 # Claude Code AI assistant memory — personal, machine-specific
 .claude/
 
+# API secrets — never commit
+/[Aa]ssets/Resources/ApiSecrets.txt
+/[Aa]ssets/Resources/ApiSecrets.txt.meta
+
 # Source art files (large, keep locally or in cloud storage)
 *.psd
 *.blend

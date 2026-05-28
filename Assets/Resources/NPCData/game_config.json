@@ -3,12 +3,16 @@
     {
       "id": "town_entrance",
       "description": "Opens the fence preventing access to Saltmere.",
-      "required_keys": []
+      "required_keys": [
+        1
+      ]
     },
     {
       "id": "church_district",
       "description": "Moves the horse-drawn carriage blocking the street to the church district.",
-      "required_keys": []
+      "required_keys": [
+        2
+      ]
     },
     {
       "id": "church_side_alley",
@@ -18,17 +22,23 @@
     {
       "id": "church_entrance",
       "description": "Grants entry to the main hall of the church.",
-      "required_keys": []
+      "required_keys": [
+        3
+      ]
     },
     {
       "id": "felix_market_stall",
       "description": "Spawns Felix's market stall near the church.",
-      "required_keys": []
+      "required_keys": [
+        4
+      ]
     },
     {
       "id": "hilltop_ruins",
       "description": "Spawns Lenore on the hilltop ruins.",
-      "required_keys": []
+      "required_keys": [
+        5
+      ]
     },
     {
       "id": "inn_room",
@@ -43,12 +53,16 @@
     {
       "id": "exiting_inn",
       "description": "Allows the player to exit the inn after the dream.",
-      "required_keys": []
+      "required_keys": [
+        6
+      ]
     },
     {
       "id": "runic_cave_discovery",
       "description": "Player can now navigate to the forest and runic cave.",
-      "required_keys": []
+      "required_keys": [
+        7
+      ]
     },
     {
       "id": "eris_solon_confession",
@@ -58,7 +72,9 @@
     {
       "id": "hilltop_finale",
       "description": "Spawns Lenore for the final resolution at the hilltop ruins.",
-      "required_keys": []
+      "required_keys": [
+        8
+      ]
     }
   ]
 }
